@@ -10,6 +10,5 @@ public class Main
     {
         Application application = Application.getApplication();
         application.run();
-
     }
 }
