@@ -17,22 +17,17 @@ public class AppealProcessor
     }
 
     //Variables
-    private int appealsCount = 0;
-    private LinkedHashMap<Integer, Appeal> appeals = new LinkedHashMap<>();
 
     //Functions
-    private void printAppealInfo(Integer id, Appeal appeal)
+    public void testFunction()
     {
-        System.out.print(id + "\t|\t");
-        appeal.showAppeals();
-        System.out.print("\n");
+
     }
 
     public void processingAppeals()
     {
         ConsoleSupporting.clearScreen();
         System.out.print(ConsoleSupporting.OUTPUT_APPEAL_TABLE_HEAD);
-        appeals.forEach(this::printAppealInfo);
 
         System.out.print(ConsoleSupporting.OUTPUT_PROCESSING_APPEAL);
 
@@ -69,11 +64,6 @@ public class AppealProcessor
         if (!input.equals(ConsoleSupporting.CANCEL))
         {
             String[] string = input.split(" ");
-            appealsCount++;
-            appeals.put(appealsCount, new Appeal(string[0], Integer.parseInt(string[1]),
-                                                 Integer.parseInt(string[2]), Integer.parseInt(string[3]),
-                                                 string[4], string[5], string[6], string[7], string[8],
-                                                 string[9].equals("1"), string[10].equals("1")));
         }
     }
 
@@ -89,10 +79,6 @@ public class AppealProcessor
 
             String info = scan.nextLine();
             String[] string = info.split(" ");
-            appeals.put(appealsCount, new Appeal(string[0], Integer.parseInt(string[1]),
-                                                 Integer.parseInt(string[2]), Integer.parseInt(string[3]),
-                                                 string[4], string[5], string[6], string[7], string[8],
-                                                 string[9].equals("1"), string[10].equals("1")));
         }
     }
 
@@ -104,7 +90,6 @@ public class AppealProcessor
         input = scan.nextLine();
         if (!input.equals(ConsoleSupporting.CANCEL))
         {
-            appeals.remove(Integer.parseInt(input));
         }
     }
 }

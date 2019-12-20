@@ -39,9 +39,9 @@ public class Application
         input = scan.nextLine();
         if (input.equals(ConsoleSupporting.CLIENT))
         {
-            while (!input.equals(ConsoleSupporting.CANCEL))
+           // while (!input.equals(ConsoleSupporting.CANCEL))
             {
-                clientProcessor.processingClients();
+                clientProcessor.testFunction();
             }
         }
 
@@ -49,7 +49,7 @@ public class Application
         {
             while (!input.equals(ConsoleSupporting.CANCEL))
             {
-                appealProcessor.processingAppeals();
+                appealProcessor.testFunction();
             }
         }
     }

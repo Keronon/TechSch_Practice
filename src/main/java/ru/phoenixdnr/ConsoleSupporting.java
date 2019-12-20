@@ -13,15 +13,15 @@ public class ConsoleSupporting
     //Strings
     protected static final String QUIT = "q";
     protected static final String CANCEL = "c";
-    protected static final String CLIENT = "ru.phoenix.Client";
-    protected static final String APPEAL = "ru.phoenix.Appeal";
+    protected static final String CLIENT = "Client";
+    protected static final String APPEAL = "Appeal";
     protected static final String INSERT = "INSERT";
     protected static final String UPDATE = "UPDATE";
     protected static final String DELETE = "DELETE";
 
     protected static final String OUTPUT_RUN = "Введите \"RUN\" для начала работы\n\n";
     protected static final String OUTPUT_QUIT = "Введите \"q\" чтобы закрыть приложение\n\n";
-    protected static final String OUTPUT_CLIENT_OR_APPEAL = "Введите \"ru.phoenix.Client\" для изменения клиентов\nили\n\"ru.phoenix.Appeal\" для изменения обращений\n\n";
+    protected static final String OUTPUT_CLIENT_OR_APPEAL = "Введите \"Client\" для изменения клиентов\nили\n\"Appeal\" для изменения обращений\n\n";
 
     protected static final String OUTPUT_CLIENT_TABLE_HEAD = "id\t|\tname\t|\tidCity\t|\tidTechnicalInformation\t|\taddress\t|\tcontactInformation\n";
     protected static final String OUTPUT_PROCESSING_CLIENT = "\n\nВведите \"c\" для выхода на главную или\nВведите INSERT для добавления пользователя\nВведите UPDATE для изменения пользователя\nВведите DELETE для удаления пользователя\n\n";
