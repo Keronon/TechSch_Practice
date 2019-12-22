@@ -20,23 +20,29 @@ public class ConsoleSupporting
 
     //Outputs
     protected static final String VOID = "                              ";
-
     protected static final String RUN = "\nВведите \"RUN\" для начала работы\n";
     protected static final String ABOUT_TABLES = "\nСписок таблиц:\n";
+
     protected static final String SELECTION_OF_QUIT = "\nВведите \"q\" чтобы закрыть приложение\n";
+    protected static final String SELECTION_OF_CANCELLING = "\nВведите \"c\" для выхода на главную\n";
     protected static final String SELECTION_OF_TABLE = "\nВведите название таблицы, с которой будете работать\n";
+    protected static final String SELECTION_OF_PROCESSING = "\nВведите INSERT для добавления пользователя\nВведите UPDATE для изменения пользователя\nВведите DELETE для удаления пользователя\n";
 
-    protected static final String OUTPUT_PROCESSING_CLIENT = "\nВведите \"c\" для выхода на главную или\nВведите INSERT для добавления пользователя\nВведите UPDATE для изменения пользователя\nВведите DELETE для удаления пользователя\n";
-    protected static final String OUTPUT_INSERT_CLIENT = "\nВведите \"c\" для выхода на главную\nили\nимя, id технической информации, id города, адрес,\nконтактную информацию нового пользователя ниже\n";
-    protected static final String OUTPUT_UPDATE_ID_CLIENT = "\nВведите \"c\" для выхода на главную\nили\nid пользователя, которого нужно изменить\n";
-    protected static final String OUTPUT_DELETE_CLIENT = "\nВведите \"c\" для выхода на главную\nили\nid удаляемого пользователя\n";
+    protected static final String INSERTING_OF_ROW = "\nили данные для новой записи через запятую, исключая id:\n";
+    protected static final String UPDATING_ID = "\nили id записи, которую нужно изменить\n";
+    protected static final String UPDATING_OF_ROW = "\nВведите новые данные для записи через запятую:\n";
+    protected static final String DELETING_OF_ROW = "\nили id удаляемой записи\n";
 
+    protected static final String SELECT_TABLE_NAME = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY 1";
+    protected static final String SELECT_COLUMN_NAME = "select column_name from information_schema.columns where table_name='";
+    protected static final String SELECT_ALL = "select * from ";
+    protected static final String SELECT_ORDER = " order by 1";
     //Functions
     protected static void clearScreen()
     {
         for(int i = 0; i < 5; i++)
         {
-            System.out.print("\n\n\n\n\n\n\n\n\n\n");
+            System.out.print("\n\n\n\n\n");
         }
     }
 }
