@@ -33,10 +33,14 @@ public class ConsoleSupporting
     protected static final String UPDATING_OF_ROW = "\nВведите новые данные для записи через запятую:\n";
     protected static final String DELETING_OF_ROW = "\nили id удаляемой записи\n";
 
+    //Queries
     protected static final String SELECT_TABLE_NAME = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY 1";
-    protected static final String SELECT_COLUMN_NAME = "select column_name from information_schema.columns where table_name='";
-    protected static final String SELECT_ALL = "select * from ";
-    protected static final String SELECT_ORDER = " order by 1";
+    protected static final String SELECT_COLUMN_NAME = "SELECT column_name FROM information_schema.columns WHERE table_name='";
+    protected static final String SELECT_ALL_ROWS = "SELECT * FROM %s ORDER BY 1";
+    protected static final String INSERT_ROW = "";
+    protected static final String UPDATE_ROW = "UPDATE %s SET %s WHERE id=%d";
+    protected static final String DELETE_ROW = "DELETE FROM %s WHERE id=%s;";
+
     //Functions
     protected static void clearScreen()
     {

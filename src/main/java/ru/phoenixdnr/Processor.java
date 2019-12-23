@@ -23,9 +23,11 @@ public class Processor
 
     //Variables
     int counter = 0;
+
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
+
     private String table;
     private ArrayList header = new ArrayList();
     private int columns;
@@ -90,7 +92,7 @@ public class Processor
     {
         try
         {
-            resultSet = statement.executeQuery(ConsoleSupporting.SELECT_ALL + table + ConsoleSupporting.SELECT_ORDER);
+            resultSet = statement.executeQuery(String.format(ConsoleSupporting.SELECT_ALL_ROWS, table));
             while (resultSet.next())
             {
                 for (int i = 1; i <= columns; i++)
@@ -180,7 +182,7 @@ public class Processor
             input = scan.nextLine();
             if (!input.equals(ConsoleSupporting.CANCEL))
             {
-
+                // INSERT INTO public.roles (id, name) VALUES (?, ?);
             }
         }
         catch (Exception e)
@@ -210,13 +212,11 @@ public class Processor
                 input = scan.nextLine();
 
                 String[] inputted = input.split(", ");
-                AtomicReference<String> query = new AtomicReference<>("UPDATE " + table + " SET ");
+                AtomicReference<String> query = new AtomicReference<>();
                 counter = 0;
-                header.forEach((v) -> {query.set(query.get() + v + "=\'" + inputted[counter] + "\', "); counter++;});
+                header.forEach((v) -> {query.set(query.get() + v + "='" + inputted[counter] + "', "); counter++;});
                 String str = query.toString();
-                str = str.substring(0, str.length() - 2) + " WHERE id=" + id;
-                //System.out.println(str);
-                statement.executeUpdate(str);
+                statement.executeUpdate(String.format(ConsoleSupporting.UPDATE_ROW, table, str.substring(0, str.length() - 2), id));
             }
         }
         catch (Exception e)
@@ -234,12 +234,11 @@ public class Processor
             ConsoleSupporting.clearScreen();
             System.out.print(ConsoleSupporting.SELECTION_OF_CANCELLING);
             System.out.println(ConsoleSupporting.DELETING_OF_ROW);
-            printTableHead();
 
             input = scan.nextLine();
             if (!input.equals(ConsoleSupporting.CANCEL))
             {
-
+                statement.executeUpdate(String.format(ConsoleSupporting.DELETE_ROW, table, input));
             }
         }
         catch (Exception e)
