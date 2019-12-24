@@ -8,7 +8,7 @@ public class Main
 
     public static void main(String[] args) throws IOException
     {
-        Application application = Application.getApplication();
-        application.run();
+        Processor processor = Processor.getProcessor();
+        processor.run();
     }
 }

@@ -10,39 +10,43 @@ public class ConsoleSupporting
     protected static String input;
     protected static Scanner scan = new Scanner(System.in);
 
-    //Strings
+    //STRINGS
+    //Inputs
     protected static final String QUIT = "q";
     protected static final String CANCEL = "c";
-    protected static final String CLIENT = "Client";
-    protected static final String APPEAL = "Appeal";
     protected static final String INSERT = "INSERT";
     protected static final String UPDATE = "UPDATE";
     protected static final String DELETE = "DELETE";
 
-    protected static final String OUTPUT_RUN = "Введите \"RUN\" для начала работы\n\n";
-    protected static final String OUTPUT_QUIT = "Введите \"q\" чтобы закрыть приложение\n\n";
-    protected static final String OUTPUT_CLIENT_OR_APPEAL = "Введите \"Client\" для изменения клиентов\nили\n\"Appeal\" для изменения обращений\n\n";
+    //Outputs
+    protected static final String VOID = "                              ";
+    protected static final String RUN = "\nВведите \"RUN\" для начала работы\n";
+    protected static final String ABOUT_TABLES = "\nСписок таблиц:\n";
 
-    protected static final String OUTPUT_CLIENT_TABLE_HEAD = "id\t|\tname\t|\tidCity\t|\tidTechnicalInformation\t|\taddress\t|\tcontactInformation\n";
-    protected static final String OUTPUT_PROCESSING_CLIENT = "\n\nВведите \"c\" для выхода на главную или\nВведите INSERT для добавления пользователя\nВведите UPDATE для изменения пользователя\nВведите DELETE для удаления пользователя\n\n";
-    protected static final String OUTPUT_INSERT_CLIENT = "Введите \"c\" для выхода на главную\nили\nимя, id технической информации, id города, адрес,\nконтактную информацию нового пользователя ниже\n\n";
-    protected static final String OUTPUT_UPDATE_ID_CLIENT = "Введите \"c\" для выхода на главную\nили\nid пользователя, которого нужно изменить\n\n";
-    protected static final String OUTPUT_UPDATE_CLIENT = "\nВведите новые данные клиента:\nимя, id технической информации, id города, адрес,\nконтактную информацию нового пользователя ниже\n\n";
-    protected static final String OUTPUT_DELETE_CLIENT = "Введите \"c\" для выхода на главную\nили\nid удаляемого пользователя\n\n";
+    protected static final String SELECTION_OF_QUIT = "\nВведите \"q\" чтобы закрыть приложение\n";
+    protected static final String SELECTION_OF_CANCELLING = "\nВведите \"c\" для выхода на главную\n";
+    protected static final String SELECTION_OF_TABLE = "\nВведите название таблицы, с которой будете работать\n";
+    protected static final String SELECTION_OF_PROCESSING = "\nВведите INSERT для добавления пользователя\nВведите UPDATE для изменения пользователя\nВведите DELETE для удаления пользователя\n";
 
-    protected static final String OUTPUT_APPEAL_TABLE_HEAD = "id\t|\tappeal_dat\t|\tid_duty\t|\tid_problem\t|\tid_client\t|\tproblem_analysis\t|\tdecision_date\t|\tdecision\t|\tculprit\t|\tdowntime\t|\tcheck_out\t|\tdecision_success\n";
-    protected static final String OUTPUT_PROCESSING_APPEAL = "\n\nВведите \"c\" для выхода на главную или\nВведите INSERT для добавления оюращения\nВведите UPDATE для изменения оюращения\nВведите DELETE для удаления оюращения\n\n";
-    protected static final String OUTPUT_INSERT_APPEAL = "Введите \"c\" для выхода на главную\nили\nдату обращения, дежурного, id проблемы, id клиента,\nанализ, дату принятия решения, решение, виновного,\nпростой, проверку выезда, успешность решения ниже\n\n";
-    protected static final String OUTPUT_UPDATE_ID_APPEAL = "Введите \"c\" для выхода на главную\nили\nid обращения, которое нужно изменить\n\n";
-    protected static final String OUTPUT_UPDATE_APPEAL = "\nВведите новые данные обращения:\nдату обращения, дежурного, id проблемы, id клиента,\nанализ, дату принятия решения, решение, виновного,\nпростой, проверку выезда, успешное решение ниже\n\n";
-    protected static final String OUTPUT_DELETE_APPEAL = "Введите \"c\" для выхода на главную\nили\nid удаляемого обращения\n\n";
+    protected static final String INSERTING_OF_ROW = "\nили данные для новой записи через запятую\n(строки и даты необходимо заключать в одиночные кавычки):\n";
+    protected static final String UPDATING_ID = "\nили id записи, которую нужно изменить:\n";
+    protected static final String UPDATING_OF_ROW = "\nВведите новые данные для записи через запятую:\n";
+    protected static final String DELETING_OF_ROW = "\nили id удаляемой записи:\n";
+
+    //Queries
+    protected static final String SELECT_TABLE_NAME = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY 1";
+    protected static final String SELECT_COLUMN_NAME = "SELECT column_name FROM information_schema.columns WHERE table_name='";
+    protected static final String SELECT_ALL_ROWS = "SELECT * FROM %s ORDER BY 1";
+    protected static final String INSERT_ROW = "INSERT INTO %s (%s) VALUES (%s)";
+    protected static final String UPDATE_ROW = "UPDATE %s SET %s WHERE id=%d";
+    protected static final String DELETE_ROW = "DELETE FROM %s WHERE id=%s;";
 
     //Functions
     protected static void clearScreen()
     {
         for(int i = 0; i < 5; i++)
         {
-            System.out.print("\n\n\n\n\n\n\n\n\n\n");
+            System.out.print("\n\n\n\n\n");
         }
     }
 }
