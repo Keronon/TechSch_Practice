@@ -1,9 +1,10 @@
 package ru.phoenixdnr;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -177,12 +178,15 @@ public class Processor
             ConsoleSupporting.clearScreen();
             System.out.print(ConsoleSupporting.SELECTION_OF_CANCELLING);
             System.out.println(ConsoleSupporting.INSERTING_OF_ROW);
-            printTableHead();
+
+            String string = String.valueOf(header);
+            System.out.println(string.substring(5, string.length() - 1));
+            System.out.println();
 
             input = scan.nextLine();
             if (!input.equals(ConsoleSupporting.CANCEL))
             {
-                // INSERT INTO public.roles (id, name) VALUES (?, ?);
+                statement.executeUpdate(String.format(ConsoleSupporting.INSERT_ROW, table, string.substring(5, string.length() -1), input));
             }
         }
         catch (Exception e)
@@ -215,8 +219,8 @@ public class Processor
                 AtomicReference<String> query = new AtomicReference<>();
                 counter = 0;
                 header.forEach((v) -> {query.set(query.get() + v + "='" + inputted[counter] + "', "); counter++;});
-                String str = query.toString();
-                statement.executeUpdate(String.format(ConsoleSupporting.UPDATE_ROW, table, str.substring(0, str.length() - 2), id));
+                String string = query.toString();
+                statement.executeUpdate(String.format(ConsoleSupporting.UPDATE_ROW, table, string.substring(0, string.length() - 2), id));
             }
         }
         catch (Exception e)
