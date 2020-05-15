@@ -1,0 +1,8 @@
+/gitignoreRules.txt
+
+/.idea/*
+/target/*
+
+/practica.iml
+
+test/*
