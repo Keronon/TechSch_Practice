@@ -34,6 +34,7 @@ public class ConsoleSupporting
     protected static final String DELETING_OF_ROW = "\nили id удаляемой записи:\n";
 
     //Queries
+    protected static final String SELECT_TABLE_IS = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name='";
     protected static final String SELECT_TABLE_NAME = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY 1";
     protected static final String SELECT_COLUMN_NAME = "SELECT column_name FROM information_schema.columns WHERE table_name='";
     protected static final String SELECT_ALL_ROWS = "SELECT * FROM %s ORDER BY 1";

@@ -85,7 +85,6 @@ public class Processor
         {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
     }
 
@@ -107,7 +106,6 @@ public class Processor
         {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
     }
 
@@ -131,7 +129,9 @@ public class Processor
             System.out.println(ConsoleSupporting.SELECTION_OF_TABLE);
 
             input = scan.nextLine();
-            if (!input.equals(ConsoleSupporting.QUIT))
+            resultSet = statement.executeQuery(ConsoleSupporting.SELECT_TABLE_IS + input + "'");
+            resultSet.next();
+            if (!input.equals(ConsoleSupporting.QUIT) && resultSet.getInt(1) == 1)
             {
                 table = input;
                 ConsoleSupporting.clearScreen();
@@ -193,7 +193,6 @@ public class Processor
         {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
     }
 
@@ -227,7 +226,6 @@ public class Processor
         {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
     }
 
@@ -249,7 +247,6 @@ public class Processor
         {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
     }
 }
