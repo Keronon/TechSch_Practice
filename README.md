@@ -32,6 +32,34 @@ This simple project was created for
 ### <li> ***Processor***
 ### <li> ***ConsoleSupporting***
 
+<br>
+<b> (сlasses of the second order)
+
+* Appeal
+* Bill
+* ChargeType
+* ClientChange
+* ClientCity
+* Client
+* ContractChange
+* ContractPart
+* ContractStatuse
+* Contract
+* FinancialOperation
+* Problem
+* Role
+* Service
+* Status
+* Table4queries_100th
+* Table4queries_10m
+* Table4queries_10th
+* Table4queries_1m
+* Tariff
+* TechnicalInformation
+* TransactionType
+* UserChange
+* User
+
 -----
 -----
 We're all glad to know that <br>
