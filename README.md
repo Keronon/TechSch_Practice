@@ -50,10 +50,7 @@ This simple project was created for
 * Role
 * Service
 * Status
-* Table4queries_100th
-* Table4queries_10m
-* Table4queries_10th
-* Table4queries_1m
+* Table4queries
 * Tariff
 * TechnicalInformation
 * TransactionType
