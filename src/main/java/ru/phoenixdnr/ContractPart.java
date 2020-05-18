@@ -5,9 +5,9 @@ public class ContractPart
     public ContractPart() {};
 
     //Variables
-    private int id;
-    private int idContract;
-    private int idTariff;
+    private Integer id;
+    private Integer idContract;
+    private Integer idTariff;
 
     //Functions
 }

@@ -5,15 +5,15 @@ public class ClientChange
     public ClientChange() {};
 
     //Variables
-    private int idClient;
-    private char[] name = new char[250];
-    private int idTechnicalInformation;
-    private int idCity;
-    private char[] adress = new char[250];
+    private Integer idClient;
+    private Character[] name = new Character[250];
+    private Integer idTechnicalInformation;
+    private Integer idCity;
+    private Character[] adress = new Character[250];
     private String cantactInformation;
-    private int id;
-    private int idUser;
-    private char[] dateChange = new char[10];
+    private Integer id;
+    private Integer idUser;
+    private Character[] dateChange = new Character[10];
     private String comment;
 
     //Functions

@@ -5,15 +5,15 @@ public class FinancialOperation
     public FinancialOperation() {};
 
     //Variables
-    private int id;
-    private int idBill;
-    private int idTransactionType;
-    private int sum;
-    private char[] operationDate = new char[10];
-    private int idUser;
-    private int idContractPart;
-    private char[] cancellationDate = new char[10];
-    private int idCancellationUser;
+    private Integer id;
+    private Integer idBill;
+    private Integer idTransactionType;
+    private Integer sum;
+    private Character[] operationDate = new Character[10];
+    private Integer idUser;
+    private Integer idContractPart;
+    private Character[] cancellationDate = new Character[10];
+    private Integer idCancellationUser;
     private String comment;
 
     //Functions

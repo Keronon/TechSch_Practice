@@ -2,19 +2,17 @@ package ru.phoenixdnr;
 
 public class TechnicalInformation
 {
-
     public TechnicalInformation() {};
 
     //Variables
-
-    private int id;
-    private char[] dsOrSr = new char[250];
-    private int idServer;
-    private int portOrSap;
-    private int speed;
-    private char[] ip = new char[20];
-    private char[] scheme = new char[250];
-    private char[] pm = new char[250];
+    private Integer id;
+    private Character[] dsOrSr = new Character[250];
+    private Integer idServer;
+    private Integer portOrSap;
+    private Integer speed;
+    private Character[] ip = new Character[20];
+    private Character[] scheme = new Character[250];
+    private Character[] pm = new Character[250];
 
     //Functions
 }
