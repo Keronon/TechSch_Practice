@@ -2,13 +2,11 @@ package ru.phoenixdnr;
 
 public class Status
 {
-
     public Status() {};
 
     //Variables
-
-    private int id;
-    private char[] name = new char[50];
+    private Integer id;
+    private Character[] name = new Character[50];
 
     //Functions
 }

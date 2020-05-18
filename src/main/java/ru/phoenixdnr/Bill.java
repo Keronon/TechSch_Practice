@@ -5,9 +5,9 @@ public class Bill
     public Bill() {};
 
     //Variables
-    private int id;
-    private int idClient;
-    private float balance;
+    private Integer id;
+    private Integer idClient;
+    private Float balance;
 
     //Functions
 }

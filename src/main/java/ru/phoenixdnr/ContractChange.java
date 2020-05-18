@@ -5,16 +5,16 @@ public class ContractChange
     public ContractChange() {};
 
     //Variables
-    private int idContract;
-    private char[] name = new char[250];
-    private int idClient;
-    private char[] preparationDate = new char[10];
-    private char[] startDate = new char[10];
-    private int idStatus;
-    private char[] endDate = new char[10];
-    private int id;
-    private int idUser;
-    private char[] dateChange = new char[10];
+    private Integer idContract;
+    private Character[] name = new Character[250];
+    private Integer idClient;
+    private Character[] preparationDate = new Character[10];
+    private Character[] startDate = new Character[10];
+    private Integer idStatus;
+    private Character[] endDate = new Character[10];
+    private Integer id;
+    private Integer idUser;
+    private Character[] dateChange = new Character[10];
     private String comment;
 
     //Functions

@@ -5,11 +5,11 @@ public class Client
     public Client() {};
 
     //Variables
-    private int id;
-    private char[] name = new char[250];
-    private int idTechnicalInformation;
-    private int idCity;
-    private char[] adress = new char[250];
+    private Integer id;
+    private Character[] name = new Character[250];
+    private Integer idTechnicalInformation;
+    private Integer idCity;
+    private Character[] adress = new Character[250];
     private String cantactInformation;
 
     //Functions

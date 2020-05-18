@@ -5,13 +5,13 @@ public class Contract
     public Contract() {};
 
     //Variables
-    private int id;
-    private char[] name = new char[250];
-    private int idClient;
-    private char[] preparationDate = new char[10];
-    private char[] startDate = new char[10];
-    private int idStatus;
-    private char[] endDate = new char[10];
+    private Integer id;
+    private Character[] name = new Character[250];
+    private Integer idClient;
+    private Character[] preparationDate = new Character[10];
+    private Character[] startDate = new Character[10];
+    private Integer idStatus;
+    private Character[] endDate = new Character[10];
 
     //Functions
 }
