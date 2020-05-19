@@ -1,8 +1,8 @@
-package ru.phoenixdnr;
+package ru.phoenixdnr.entities;
 
-public class Service
+public class Status
 {
-    public Service() {};
+    public Status() {};
 
     //Variables
     private Integer id;

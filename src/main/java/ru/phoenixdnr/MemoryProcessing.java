@@ -1,5 +1,9 @@
 package ru.phoenixdnr;
 
+import ru.phoenixdnr.entities.Appeal;
+import ru.phoenixdnr.entities.Client;
+import ru.phoenixdnr.entities.User;
+
 import java.util.ArrayList;
 
 import static ru.phoenixdnr.ConsoleSupporting.input;
