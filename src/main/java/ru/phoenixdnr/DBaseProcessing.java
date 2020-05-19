@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static ru.phoenixdnr.ConsoleSupporting.input;
 import static ru.phoenixdnr.ConsoleSupporting.scan;
@@ -25,7 +24,7 @@ public class DBaseProcessing implements IDataProcessing
     //Variables
     private Integer counter = 0;
 
-    private ArrayList header = new ArrayList();
+    private ArrayList<String> header = new ArrayList<String>();
     private Integer columns;
 
     private Connection connection;
@@ -43,6 +42,23 @@ public class DBaseProcessing implements IDataProcessing
     private final String DELETE_ROW = "DELETE FROM %s WHERE id=%s;";
 
     //Functions
+    public void setConnection()
+    {
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.
+                    getConnection("jdbc:postgresql://localhost:5432/PracticeDB", "A.T.A.N", "123");
+            connection.setAutoCommit(false);
+            System.out.println("-- Opened database successfully");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
     public void run()
     {
         setConnection();
@@ -52,15 +68,12 @@ public class DBaseProcessing implements IDataProcessing
     {
         try
         {
-            resultSet.close();
-            statement.close();
             connection.commit();
             connection.close();
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
@@ -69,42 +82,43 @@ public class DBaseProcessing implements IDataProcessing
     {
         try
         {
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(this.SELECT_TABLE_IS + table + "'");
             resultSet.next();
             if (resultSet.getInt(1) == 1)
                 return true;
+            resultSet.close();
+            statement.close();
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
         return false;
     }
 
-    public void printTableList()
+    public String[] getTables()
     {
+        ArrayList<String> tables = new ArrayList<String>();
         try
         {
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(this.SELECT_TABLE_NAME);
-            counter = 0;
-            while (resultSet.next()) {
-                if (counter == 4) {
-                    System.out.println();
-                    counter = 0;
-                }
-                System.out.printf("%.30s\t", resultSet.getString(1).trim() + ConsoleSupporting.VOID);
-                counter++;
+            while (resultSet.next())
+            {
+                tables.add(resultSet.getString(1).trim());
             }
-            System.out.println();
+            resultSet.close();
+            statement.close();
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
+        String[] a = new String[tables.size()];
+        return tables.toArray(a);
     }
 
     public void printTableHead(String table)
@@ -113,6 +127,7 @@ public class DBaseProcessing implements IDataProcessing
         {
             columns = 0;
             header.clear();
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(this.SELECT_COLUMN_NAME + table + "'");
             while (resultSet.next())
             {
@@ -121,11 +136,12 @@ public class DBaseProcessing implements IDataProcessing
                 System.out.printf("%.15s\t", resultSet.getString(1).trim() + ConsoleSupporting.VOID);
             }
             System.out.println();
+            resultSet.close();
+            statement.close();
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
@@ -133,6 +149,7 @@ public class DBaseProcessing implements IDataProcessing
     {
         try
         {
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(String.format(this.SELECT_ALL_ROWS, table));
             while (resultSet.next())
             {
@@ -142,11 +159,12 @@ public class DBaseProcessing implements IDataProcessing
                 }
                 System.out.println();
             }
+            resultSet.close();
+            statement.close();
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
@@ -165,13 +183,15 @@ public class DBaseProcessing implements IDataProcessing
             input = scan.nextLine();
             if (!input.equals(ConsoleSupporting.CANCEL))
             {
+                statement = connection.createStatement();
                 statement.executeUpdate(String.format(this.INSERT_ROW, table, string.substring(5, string.length() -1), input));
+                statement.close();
+                connection.commit();
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
@@ -194,17 +214,20 @@ public class DBaseProcessing implements IDataProcessing
                 input = scan.nextLine();
 
                 String[] inputted = input.split(", ");
-                AtomicReference<String> query = new AtomicReference<>();
-                counter = 0;
-                header.forEach((v) -> {query.set(query.get() + v + "='" + inputted[counter] + "', "); counter++;});
-                String string = query.toString();
-                statement.executeUpdate(String.format(this.UPDATE_ROW, table, string.substring(0, string.length() - 2), id));
+                String query = "";
+                for (int i = 0; i < header.size(); i++)
+                {
+                    query += header.get(i) + "='" + inputted[i] + "', ";
+                }
+                statement = connection.createStatement();
+                statement.executeUpdate(String.format(this.UPDATE_ROW, table, query.substring(0, query.length() - 2), id));
+                statement.close();
+                connection.commit();
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
@@ -219,33 +242,15 @@ public class DBaseProcessing implements IDataProcessing
             input = scan.nextLine();
             if (!input.equals(ConsoleSupporting.CANCEL))
             {
+                statement = connection.createStatement();
                 statement.executeUpdate(String.format(this.DELETE_ROW, table, input));
+                statement.close();
+                connection.commit();
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-    }
-
-    public void setConnection()
-    {
-        try
-        {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.
-                    getConnection("jdbc:postgresql://localhost:5432/PracticeDB", "A.T.A.N", "123");
-            connection.setAutoCommit(false);
-            System.out.println("-- Opened database successfully");
-
-            statement = connection.createStatement();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
         }
     }
 }

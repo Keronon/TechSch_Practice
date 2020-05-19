@@ -12,8 +12,7 @@ public class ConsoleSupporting
 
     //STRINGS
     //Inputs
-    protected static final String QUIT = "q";
-    protected static final String CANCEL = "c";
+    protected static final String CANCEL = "CANCEL";
     protected static final String INSERT = "INSERT";
     protected static final String UPDATE = "UPDATE";
     protected static final String DELETE = "DELETE";
@@ -22,7 +21,7 @@ public class ConsoleSupporting
     protected static final String VOID = "                              ";
     protected static final String ABOUT_TABLES = "\nСписок таблиц:\n";
 
-    protected static final String SELECTION_OF_CANCELLING = "\nВведите \"c\" для выхода на главную\n";
+    protected static final String SELECTION_OF_CANCELLING = "\nВведите \"CANCEL\" для выхода на главную\n";
     protected static final String SELECTION_OF_TABLE = "\nВведите название таблицы, с которой будете работать\n";
     protected static final String SELECTION_OF_PROCESSING = "\nВведите INSERT для добавления пользователя\nВведите UPDATE для изменения пользователя\nВведите DELETE для удаления пользователя\n";
 

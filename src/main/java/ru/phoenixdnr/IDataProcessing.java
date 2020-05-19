@@ -7,7 +7,7 @@ public interface IDataProcessing
     void end();
 
     boolean isTable(String table);
-    void printTableList();
+    String[] getTables();
     void printTableHead(String table);
     void printTableRows(String table);
 
