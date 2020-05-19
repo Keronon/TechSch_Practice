@@ -1,4 +1,4 @@
-package ru.phoenixdnr;
+package ru.phoenixdnr.entities;
 
 public class Bill
 {
