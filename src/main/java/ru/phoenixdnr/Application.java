@@ -18,15 +18,17 @@ public class Application
     private IDataProcessing processing = MemoryProcessing.getMemoryProcessing();
 
     private String table;
+    private Integer counter = 0;
 
     //STRINGS
     //Inputs
+    private final String QUIT = "QUIT";
     private final String MEMORY = "Memory";
     private final String DBASE = "Data_base";
 
     //Outputs
     private final String RUN = "\nВведите \"RUN\" для начала работы\n";
-    private final String SELECTION_OF_QUIT = "\nВведите \"q\" чтобы закрыть приложение\n";
+    private final String SELECTION_OF_QUIT = "\nВведите \"QUIT\" чтобы закрыть приложение\n";
     private final String SELECTION_OF_PROCECCING_TYPE = "\nВыберите хранилище обрабатываемых данных:\n\t\tMemory\t\t\tData_base\n\nили";
 
     //Functions
@@ -36,7 +38,7 @@ public class Application
         System.out.println(this.RUN);
         input = scan.nextLine();
 
-        while (!input.equals(this.MEMORY) && !input.equals(this.DBASE) && !input.equals(ConsoleSupporting.QUIT))
+        while (!input.equals(this.MEMORY) && !input.equals(this.DBASE) && !input.equals(this.QUIT))
         {
             ConsoleSupporting.clearScreen();
             System.out.print(this.SELECTION_OF_PROCECCING_TYPE);
@@ -46,19 +48,19 @@ public class Application
             if (input.equals(this.DBASE))
                 this.processing = DBaseProcessing.getDBaseProcessing();
         }
-        while (!input.equals(ConsoleSupporting.QUIT))
+        while (!input.equals(this.QUIT))
         {
             ConsoleSupporting.clearScreen();
             processing.run();
 
             System.out.println(ConsoleSupporting.ABOUT_TABLES);
-            this.processing.printTableList();
+            this.printTableList(processing.getTables());
 
             System.out.print(this.SELECTION_OF_QUIT);
             System.out.println(ConsoleSupporting.SELECTION_OF_TABLE);
             input = scan.nextLine();
 
-            if (!input.equals(ConsoleSupporting.QUIT))
+            if (!input.equals(this.QUIT))
             {
                 this.table = input;
                 if (processing.isTable(this.table))
@@ -75,12 +77,12 @@ public class Application
                         while (!input.equals(ConsoleSupporting.CANCEL)) {
                             processing.insert(this.table);
                         }
-                    }
+                    } else
                     if (input.equals(ConsoleSupporting.UPDATE)) {
                         while (!input.equals(ConsoleSupporting.CANCEL)) {
                             processing.update(this.table);
                         }
-                    }
+                    } else
                     if (input.equals(ConsoleSupporting.DELETE)) {
                         while (!input.equals(ConsoleSupporting.CANCEL)) {
                             processing.delete(this.table);
@@ -91,5 +93,20 @@ public class Application
             processing.end();
         }
         ConsoleSupporting.clearScreen();
+    }
+
+    public void printTableList(String[] tables)
+    {
+        counter = 0;
+        for (int i = 0; i < tables.length; i++)
+        {
+            if (counter == 4) {
+                System.out.println();
+                counter = 0;
+            }
+            System.out.printf("%.30s\t", tables[i] + ConsoleSupporting.VOID);
+            counter++;
+        }
+        System.out.println();
     }
 }

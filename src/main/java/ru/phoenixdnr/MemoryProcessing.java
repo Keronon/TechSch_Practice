@@ -96,9 +96,9 @@ public class MemoryProcessing implements IDataProcessing
         }
     }
 
-    public void printTableList()
+    public String[] getTables()
     {
-        System.out.println("Appeals\tClients\tUsers");
+        return new String[] {"Appeals", "Clients", "Users"};
     }
 
     public void printTableHead(String table)
