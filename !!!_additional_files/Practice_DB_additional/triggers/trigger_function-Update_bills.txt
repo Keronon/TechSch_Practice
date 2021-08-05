@@ -1,0 +1,33 @@
+DECLARE
+    old_sum money;
+    new_sum money;
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+		IF NEW.id_transaction_type = 1
+		THEN new_sum = -NEW.sum;
+		ELSE new_sum = NEW.sum;
+		END IF;
+		UPDATE public.bills SET balance = balance + new_sum WHERE id = NEW.id_bill;
+		RETURN NEW;
+	ELSEIF TG_OP = 'UPDATE' THEN
+		IF OLD.id_transaction_type = 1 and NEW.id_transaction_type = 1 THEN
+			old_sum = OLD.sum; new_sum = -NEW.sum;
+		ELSEIF OLD.id_transaction_type = 1 and NEW.id_transaction_type = 2 THEN
+			old_sum = OLD.sum; new_sum = NEW.sum;
+		ELSEIF OLD.id_transaction_type = 2 and NEW.id_transaction_type = 1 THEN
+			old_sum = -OLD.sum; new_sum = -NEW.sum;
+		ELSE 
+			old_sum = -OLD.sum; new_sum = NEW.sum;
+		END IF;
+		UPDATE public.bills SET balance = balance + old_sum + new_sum
+		WHERE id = NEW.id_bill AND id = OLD.id_bill;
+		RETURN NEW;
+	ELSE
+		IF OLD.id_transaction_type = 1
+		THEN new_sum = OLD.sum;
+		ELSE new_sum = -OLD.sum;
+		END IF;
+		UPDATE public.bills SET balance = balance + new_sum WHERE id = OLD.id_bill;
+		RETURN OLD;
+	END IF;
+END;

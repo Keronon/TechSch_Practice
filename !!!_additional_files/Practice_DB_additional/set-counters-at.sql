@@ -1,0 +1,1 @@
+ALTER SEQUENCE table_field_seq RESTART WITH value;
